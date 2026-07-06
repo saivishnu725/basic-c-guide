@@ -32,6 +32,7 @@ char *readline(FILE *f) {
 			char *new_buff = realloc(buff, max);
 			if(new_buff == NULL) {
 				printf("error with new_buf alloc\n");
+				free(buff);
 				return NULL;
 			}
 			buff = new_buff; // change buf to new address
@@ -52,6 +53,7 @@ char *readline(FILE *f) {
 		char *new_buf = realloc(buff, index + 1); // +1 because '\0'
 		if(new_buf == NULL) {
 			printf("error new_buf realloc during shrink\n");
+			free(buff);
 			return NULL;
 		}
 		buff = new_buf; // replace
